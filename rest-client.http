@@ -1,0 +1,6 @@
+# GET ALL SONGS -
+GET http://localhost:3002/songs
+
+
+# CREATE A NEW SONG -
+POST http://localhost:3002/songs
