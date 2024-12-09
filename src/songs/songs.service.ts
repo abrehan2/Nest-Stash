@@ -1,15 +1,27 @@
-import { Injectable } from '@nestjs/common';
+// Imports:
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { CreateSongDto } from 'src/dto/create-song-dto';
 
 @Injectable()
 export class SongsService {
-  private readonly songs: string[] = [];
+  private readonly songs: CreateSongDto[] = [];
 
-  create(song: string): string[] {
+  create(song: CreateSongDto): CreateSongDto[] {
     this.songs.push(song);
     return this.songs;
   }
 
-  findAll(): string[] {
-    return this.songs;
+  findAll(): CreateSongDto[] {
+    try {
+      return this.songs;
+    } catch (e) {
+      throw new HttpException(
+        'Internal Server Error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+        {
+          cause: e.message,
+        },
+      );
+    }
   }
 }
