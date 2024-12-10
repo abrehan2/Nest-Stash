@@ -1,14 +1,17 @@
 # GET ALL SONGS -
 # GET http://localhost:3002/songs
 
+# GET SONG BY ID -
+GET http://localhost:3002/songs/0
+
 
 # CREATE A NEW SONG -
-# POST http://localhost:3002/songs
-# Content-Type: application/json
+POST http://localhost:3002/songs
+Content-Type: application/json
 
-# {
-#     "releasedDate": "2021-09-01",
-#     "duration": "03:30",
-#     "title": "New Song",
-#     "artists": ["New Artist 1", "New Artist 2"]
-# }
+{
+    "releasedDate": "2021-09-01",
+    "duration": "03:30",
+    "title": "New Song",
+    "artists": ["New Artist 1", "New Artist 2"]
+}

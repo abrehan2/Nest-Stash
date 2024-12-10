@@ -24,4 +24,18 @@ export class SongsService {
       );
     }
   }
+
+  findOne(id: number): CreateSongDto {
+    try {
+      return this.songs[id];
+    } catch (e) {
+      throw new HttpException(
+        'Internal Server Error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+        {
+          cause: e.message,
+        },
+      );
+    }
+  }
 }

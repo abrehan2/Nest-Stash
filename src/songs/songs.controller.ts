@@ -1,5 +1,13 @@
 // Imports:
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from 'src/dto/create-song-dto';
 
@@ -18,7 +26,13 @@ export class SongsController {
   }
 
   @Get(':id')
-  findOne(): string {
-    return 'This action returns a song based on id.';
+  findOne(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: number,
+  ) {
+    return this.songService.findOne(id);
   }
 }
