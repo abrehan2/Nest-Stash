@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   HttpStatus,
+  Inject,
   Param,
   ParseIntPipe,
   Post,
@@ -13,7 +14,12 @@ import { CreateSongDto } from 'src/dto/create-song-dto';
 
 @Controller('songs')
 export class SongsController {
-  constructor(private songService: SongsService) {}
+  constructor(
+    private songService: SongsService,
+    @Inject('CONNECTION') private connection: string,
+  ) {
+    console.log('CONNECTION --->', this.connection);
+  }
 
   @Post()
   create(@Body() createSongDto: CreateSongDto) {
